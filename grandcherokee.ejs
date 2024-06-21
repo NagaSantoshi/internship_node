@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grand Cherokee</title>
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"> -->
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        h1 {
+            text-align: center;
+            padding: 20px 0;
+        }
+        
+        h5 {
+            text-decoration: "bold";
+        }
+        
+        .btn {
+            padding: 6px 8px;
+            background-color: #15255d;
+            color: white;
+            border: 1px solid white;
+        }
+        
+        /* .btn:hover{
+            background-color:#15255d;;
+            color:white;
+            border:1px solid white;
+        } */
+        
+        .btn-primary {
+            margin-left: 10px;
+        }
+        
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 0 auto;
+            width: 80%;
+        }
+        
+        .model {
+            margin: 10px;
+            padding: 10px;
+            /* border: 1px solid #ddd; */
+            text-align: center;
+            width: 25%;
+        }
+        
+        .model img {
+            width: 100%;
+            height: auto;
+        }
+        
+        #mmllc {
+            /* padding:20px; */
+            padding-left: 40px;
+            padding-right: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Select Your Grand Cherokee</h1>
+        <p id="mmllc">Pricing and product availability may vary between website and dealer. Pricing shown is nonbinding and does not constitute an offer. All features and options may not be currently available. Please contact your dealer for updated vehicle pricing and product availability.</p>
+    </div>
+    <div class="container">
+        <% grandcherokee.forEach(gc => { %>
+        <div class="model">
+            <a href="http://localhost:5500">
+                <img src="<%= gc.gc_image %>" alt="Wagoneer" class="car-image">
+            </a>
+            
+            <h5><%= gc.gc_name %></h5>
+            <p>MSRP* starting at <%= gc.gc_msrp %></p>
+            <p>Lease estimate <%= gc.gc_le %> monthly for 42 mo.</p>
+            <div class="drive-toggle btn-group" role="group" aria-label="Drive Toggle">
+                <label for="drive">Drive:</label>
+                <button type="button" class="btn btn-outline-secondary btn-drive active" id="drive1-4x4" ><%= gc.gc_drive4x4 %></button>
+                <button type="button" class="btn btn-outline-secondary btn-drive" id="drive1-4x2" ><%= gc.gc_drive4X2 %></button>
+            </div>
+
+            <div>
+                <label for="wheelbase1">Seating:</label>
+                <select class="form-control" id="wheelbase1">
+                    <option value="Standard"><%= gc.gc_seating2row %></option>
+                    <option value="Wagoneer L"><%= gc.gc_seating3row %></option>
+                </select>
+            </div>
+  
+            <p></p>
+            <a href="build_wagoneer.html" class="btn btn-primary">BUILD</a>
+        </div>
+        <% }) %>
+    </div>
+    <script src="Renegade.js"></script>
+</body>
+</html>

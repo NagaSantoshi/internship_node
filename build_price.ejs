@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeep Vehicles</title>
+    <style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    .navbar {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background-color: black;
+        color: white;
+        padding: 20px 0;
+        z-index: 1000;
+    }
+
+    .navbar-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 20px;
+    }
+    .navbar-content a {
+        font-size: 25px;
+        font-weight: 700;
+        text-decoration: none;
+        color: white;
+    }
+
+    .navbar-links a {
+        color: white;
+        margin-left: 20px;
+        text-decoration: none;
+    }
+
+    .content {
+        padding-top: 100px;
+        text-align: center;
+    }
+    .content h1 {
+        font-size: 30px;
+        font-weight: bolder;
+        margin: 50px 0px;
+    }
+    .content .sv {
+        font-size: 20px;
+        text-align: left;
+        margin: 0px 30px;
+        font-weight: 700;
+        border-bottom: 2px solid rgb(196, 196, 196);
+    }
+
+    .year-selector span {
+        margin: 0 10px;
+        cursor: pointer;
+    }
+
+    .year-selector .active {
+        font-weight: bold;
+        text-decoration: underline;
+    }
+
+    .vehicle-container {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 20px;
+        flex-wrap: wrap; /* Allow flex items to wrap to the next line */
+    }
+
+    .vehicle {
+        margin: 10px;
+        text-align: center;
+        cursor: pointer;
+        width: calc(33.33% - 20px); /* Set width to one-third minus margins */
+        box-sizing: border-box; /* Include padding and border in the width */
+    }
+
+    .vehicle img {
+        width: 70%;
+        height: auto;
+        object-fit: cover;
+    }
+
+    .vehicle-info {
+        margin-top: 10px;
+    }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="navbar-content">
+            <a href="indexg.html">Michigan Motors</a>
+            <div class="navbar-links">
+                <a href="indexg.html">Build & Price</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="content">
+        <h1>BUILD YOUR VEHICLE</h1>
+        <h2 class="sv">SELECT YOUR MICHIGAN VEHICLE</h2>
+        
+        <div class="vehicle-container">
+            <% car.forEach((cars, index) => { %>
+            <div class="vehicle">
+                <div class="year-selector">
+                    <span onclick="clickonyear()">2023</span>
+                    <span class="active">2024</span>
+                </div>
+                <div class="vehicle-info">
+                    <h2><%= cars.car_name %></h2>
+                    <% if(index === 0) { %>
+                    <a href="http://localhost:3001/grand_wagoneer">
+                        <img src="<%= cars.car_image %>" alt="<%= cars.car_name %>">
+                    </a>
+                    <% } else if(index === 1) { %>
+                    <a href="http://localhost:3002/wagoneer">
+                        <img src="<%= cars.car_image %>" alt="<%= cars.car_name %>">
+                    </a>
+                    <% } else if(index === 2) { %>
+                        <a href="http://localhost:3003/grandcherokee">
+                            <img src="<%= cars.car_image %>" alt="<%= cars.car_name %>">
+                        </a>
+                    <% } else if(index === 3) { %>
+                        <a href="http://localhost:3004/grandcherokee4xe">
+                            <img src="<%= cars.car_image %>" alt="<%= cars.car_name %>">
+                        </a>
+                    <% } else if(index === 4) { %>
+                        <a href="http://localhost:3005/wrangler">
+                            <img src="<%= cars.car_image %>" alt="<%= cars.car_name %>">
+                        </a>
+                    <% } else if(index === 5) { %>
+                        <a href="http://localhost:3500/compass">
+                           <img src="<%= cars.car_image %>" alt="<%= cars.car_name %>">
+                        </a>
+                    <% } %>
+                    <pre><h2><%= cars.car_price %> &nbsp; &nbsp; <%= cars.car_model %></h2></pre>
+                    <p>&nbsp;&nbsp;MSRP* Starting At &nbsp; &nbsp; Models to Build</p>
+                </div>
+            </div>
+            <% }) %>
+        </div>
+    </div>
+    
+    <script>
+    function clickonyear() {
+        // Add your logic for handling year clicks here
+    }
+    </script>
+</body>
+</html>

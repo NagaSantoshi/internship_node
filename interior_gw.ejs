@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeep Grand Wagoneer Configurator</title>
+    <!-- <link rel="stylesheet" href="interior.css"> -->
+    <style>
+        body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  height: 100vh;
+  overflow: hidden; /* Prevent body scroll */
+  display: flex;
+}
+
+p {
+  font-size: 13px;
+}
+
+.container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.interior-view {
+  flex: 4; /* Adjust the flex value to control the width of the image section */
+  position: relative;
+}
+
+#interiorImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensure the image covers the area */
+}
+
+.configurator {
+  flex: 2; /* Adjust the flex value to control the width of the content section */
+  overflow-y: auto; /* Enable vertical scroll */
+  background-color: rgba(255, 255, 255, 0.9); /* Slight transparency to show the image */
+  padding: 20px;
+}
+
+.content-wrapper {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.interior-options, .entertainment-options {
+  margin-bottom: 20px;
+}
+
+.interior-colors {
+  display: flex;
+  gap: 10px;
+}
+
+.interior-colors button {
+  border-radius: 50%;
+  outline: none;
+  border: 2px solid transparent;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.color-option {
+  width: 30px;
+  height: 30px;
+  border: none;
+  cursor: pointer;
+}
+
+.color-option.active {
+  border-color: blueviolet;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.color-option:hover {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.entertainment-option {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: box-shadow 0.3s;
+}
+
+.entertainment-option img {
+  width: 50px;
+  height: auto;
+  margin-right: 10px;
+}
+
+.entertainment-option.active {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.entertainment-option:hover {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="interior-view">
+            <img id="interiorImage" src="main.avif" alt="Interior View">
+        </div>
+        <div class="configurator">
+            <div class="content-wrapper">
+                <div class="interior-options">
+                    <h1>Interior</h1>
+                    <h3>INTERIOR COLORS</h3>
+                    <p>Global black interior colors</p>
+                    <br>
+                    <p>LEATHER-TRIMMED BUCKET SEATS</p>
+                    <div class="interior-colors">                    
+                        <button class="color-option" data-color="black" style="background-color: black;"></button>
+                        <button class="color-option" data-color="gray" style="background-color: gray;"></button>
+                        <button class="color-option" data-color="yellow" style="background-color: burlywood;"></button>
+                    </div>
+                </div>
+
+                <div class="entertainment-options">
+                    <h2>Entertainment</h2>
+                    <label class="entertainment-option" data-entertainment="entertainment">
+                        <img src="entertainment.jpeg" alt="Entertainment System">
+                        <p>Uconnect 5 Nav with 12.0-inch touch screen display <br>Standard</p>     
+                    </label>
+                </div>
+
+                <div class="entertainment-options">
+                    <h2>Entertainment Components</h2>
+                    <label class="entertainment-option" data-entertainment="entertainment1">
+                        <img src="entertainment1.jpeg" alt="Entertainment System">
+                        <p>Front passenger interactive display <br> $1,995</p>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+  const colorOptions = document.querySelectorAll('.color-option');
+  const entertainmentOptions = document.querySelectorAll('.entertainment-option');
+  const interiorImage = document.getElementById('interiorImage');
+
+  colorOptions.forEach(option => {
+      option.addEventListener('click', () => {
+          const color = option.dataset.color;
+          if (color === 'black') {
+              interiorImage.src = 'black_interior.avif';
+          } else if (color === 'gray') {
+              interiorImage.src = 'gray_interior.avif';
+          } else if (color === 'yellow') {
+              interiorImage.src = 'yellow_interior.avif';
+          }
+          
+          // Remove active class from all buttons
+          colorOptions.forEach(btn => btn.classList.remove('active'));
+          
+          // Add active class to the clicked button
+          option.classList.add('active');
+      });
+  });
+
+  entertainmentOptions.forEach(option => {
+      option.addEventListener('click', () => {
+          const entertainment = option.dataset.entertainment;
+          if (entertainment === 'entertainment') {
+              interiorImage.src = 'entertainment1b.avif';
+          } else if (entertainment === 'entertainment1') {
+              interiorImage.src = 'entertainment1g.avif';
+          }
+
+          // Remove active class from all labels
+          entertainmentOptions.forEach(opt => opt.classList.remove('active'));
+
+          // Add active class to the clicked label
+          option.classList.add('active');
+      });
+  });
+});
+
+    </script>
+</body>
+</html>

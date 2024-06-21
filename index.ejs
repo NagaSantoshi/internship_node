@@ -1,0 +1,39 @@
+<!-- views/index.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Car Details</title>
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    table, th, td {
+      border: 1px solid black;
+    }
+    th, td {
+      padding: 15px;
+      text-align: left;
+    }
+  </style>
+</head>
+<body>
+  <h1>Car Details</h1>
+  <table>
+    <tr>
+      <th>Car Name</th>
+      <th>Car Image</th>
+      <th>Car Name</th>
+    </tr>
+    <% car_details.forEach(car => { %>
+      <tr>
+        <td><%= car.id %></td>
+        <td><img src="<%= car.images %>" alt="<%= car.images %>" width="100"></td>
+        <td><%= car.name %></td>
+      </tr>
+    <% }) %>
+  </table>
+</body>
+</html>
